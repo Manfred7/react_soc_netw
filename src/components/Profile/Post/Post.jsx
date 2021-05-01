@@ -9,7 +9,12 @@ const Post = (props) => {
             />
 
             {props.text}
-            <div><span>Like</span>
+
+            <div>
+                <div className={s.like}>
+                    <span>LikeCount = {props.LikeCount}</span>
+                    <img src="https://31.img.avito.st/avatar/social/256x256/6329389031.jpg" width="20px" height="20px"/>
+                </div>
             </div>
 
         </div>

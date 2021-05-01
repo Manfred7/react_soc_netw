@@ -12,10 +12,10 @@ const MyPosts = () => {
             </div>
 
             <div>
-                <Post text="post1"/>
-                <Post text="post2"/>
-                <Post text="post3"/>
-                <Post text="post4"/>
+                <Post text="post1" LikeCount="777"/>
+                <Post text="post2" LikeCount="17"/>
+                <Post text="post3" LikeCount="34"/>
+                <Post text="post4" LikeCount="80"/>
             </div>
 
         </div>
