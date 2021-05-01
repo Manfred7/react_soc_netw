@@ -3,15 +3,6 @@
     background: cadetblue;
 }
 
-.item{
-    margin-left: 8px;
-    margin-top: 5px;
-    color: greenyellow;
-}
-.item.active{
-    color: blue;
-}
-
 .ava{
     background: darkmagenta;
 }
@@ -20,11 +11,3 @@
     background: blueviolet;
 }
 
-.myPost{
-    margin-top: 5px;
-    background: cornflowerblue;
-}
-
-.newPost{
-    background: chartreuse;
-}
