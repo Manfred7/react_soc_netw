@@ -8,6 +8,9 @@
     margin-top: 5px;
     color: greenyellow;
 }
+.item.active{
+    color: blue;
+}
 
 .ava{
     background: darkmagenta;
