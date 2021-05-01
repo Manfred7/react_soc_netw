@@ -2,3 +2,26 @@
     grid-area: c;
     background: cadetblue;
 }
+
+.item{
+    margin-left: 8px;
+    margin-top: 5px;
+    color: greenyellow;
+}
+
+.ava{
+    background: darkmagenta;
+}
+
+.description{
+    background: blueviolet;
+}
+
+.myPost{
+    margin-top: 5px;
+    background: cornflowerblue;
+}
+
+.newPost{
+    background: chartreuse;
+}
