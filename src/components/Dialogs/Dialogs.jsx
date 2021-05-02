@@ -17,24 +17,41 @@ const Message = (props) => {
     )
 }
 
-const Dialogs = (props) =>
-{
+const Dialogs = (props) => {
+    let dialogsData = [
+        {id: "1", userName: "Dimych"},
+        {id: "2", userName: "Andrey"},
+        {id: "3", userName: "Sveta"},
+        {id: "4", userName: "Sasha"},
+        {id: "5", userName: "Victor"},
+        {id: "6", userName: "Valera"},
+    ];
+
+    let preparedDialogs = dialogsData.map(dialog => <Dialog key={dialog.id} id={dialog.id}
+                                                            userName={dialog.userName}/>);
+
+    let messagesData = [
+        {id: "1", txt: "Hi!"},
+        {id: "2", txt: "Andrey"},
+        {id: "3", txt: "Fine"},
+        {id: "4", txt: "Me too!"}
+    ];
+
+    let preparedMessages = messagesData.map(msg => <Message key={msg.id} txt={msg.txt}/>);
+
     return (
         <div className={s.dialogs}>
 
             <div className={s.dialogItems}>
-                <Dialog id="1" userName="Dimych"/>
-                <Dialog id="2" userName="Andrey"/>
-                <Dialog id="3" userName="Sveta"/>
-                <Dialog id="4" userName="Sasha"/>
-                <Dialog id="5" userName="Victor"/>
-                <Dialog id="6" userName="Valera"/>
+                {
+                    preparedDialogs
+                }
             </div>
 
             <div className={s.messages}>
-                <Message txt="Hi!"/>
-                <Message txt="How are You"/>
-                <Message txt="Fine"/>
+                {
+                    preparedMessages
+                }
             </div>
         </div>
     );

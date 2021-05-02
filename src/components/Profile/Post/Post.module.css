@@ -12,7 +12,7 @@
 .item img {
     width: 40px;
     height: 70px;
-    alt:"";
+
     border-radius: 10px;
 }
 
@@ -23,5 +23,5 @@
 .like img{
     width: 20px;
     height: 20px;
-    alt:"";
+    alt:"456";
 }

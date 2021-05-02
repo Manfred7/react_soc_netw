@@ -6,8 +6,7 @@ const ProfileInfo = () => {
         <div>
             <div>
                 <img
-                    src="https://cdn.shazoo.ru/c800x360/161743_5LpKjDRLyv_4790632_samurai_jack_2422x1500_w.jpg"
-
+                    src="https://cdn.shazoo.ru/c800x360/161743_5LpKjDRLyv_4790632_samurai_jack_2422x1500_w.jpg" alt=""
                 />
             </div>
 

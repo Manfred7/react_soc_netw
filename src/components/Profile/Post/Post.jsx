@@ -6,6 +6,7 @@ const Post = (props) => {
         <div className={s.item}>
             <img
                 src="https://galeri14.uludagsozluk.com/812/samuray-jack-in-terlikleri_1439982_m.jpg"
+                alt=""
             />
 
             {props.text}
@@ -13,7 +14,7 @@ const Post = (props) => {
             <div>
                 <div className={s.like}>
                     <span>LikeCount = {props.LikeCount}</span>
-                    <img src="https://31.img.avito.st/avatar/social/256x256/6329389031.jpg" width="20px" height="20px"/>
+                    <img src="https://31.img.avito.st/avatar/social/256x256/6329389031.jpg" width="20px" height="20px" alt=" "/>
                 </div>
             </div>
 
