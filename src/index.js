@@ -20,7 +20,18 @@ let messagesData = [
     {id: "5", txt: "Yeeees!"}
 ];
 
-ReactDOM.render(<App dialogsData={dialogsData} messagesData={messagesData}/>,
+let postsData = [
+    {id: "1", text: "post1!", LikeCount: "777"},
+    {id: "2", text: "post2", LikeCount: "5"},
+    {id: "3", text: "post3", LikeCount: "53"},
+    {id: "4", text: "post4", LikeCount: "17"},
+    {id: "5", text: "post5", LikeCount: "888"},
+    {id: "6", text: "новый интересный пост", LikeCount: "900"}
+];
+
+ReactDOM.render(<App dialogsData={dialogsData}
+                     messagesData={messagesData}
+                     postsData={postsData}/>,
     document.getElementById('root'));
 
 

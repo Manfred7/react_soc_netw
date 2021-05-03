@@ -23,8 +23,11 @@ function App(props) {
                            path="/dialogs"
                            render={() => <Dialogs dialogsData={props.dialogsData}
                                                   messagesData={props.messagesData}/>
-                           }/>
-                    <Route path="/profile" component={Profile}/>
+                           }
+                    />
+                    <Route path="/profile"
+                           render={()=><Profile postsData={props.postsData}  />}
+                    />
                     <Route path="/music" component={Music}/>
                     <Route path="/news" component={News}/>
                     <Route path="/settings" component={Settings}/>
