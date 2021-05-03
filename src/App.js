@@ -10,7 +10,7 @@ import Settings from "./components/Settings/Settings";
 
 
 function App(props) {
-    debugger;
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -21,12 +21,11 @@ function App(props) {
 
                     <Route exact
                            path="/dialogs"
-                           render={() => <Dialogs dialogsData={props.dialogsData}
-                                                  messagesData={props.messagesData}/>
+                           render={() => <Dialogs state={props.appState.messsagesPage}/>
                            }
                     />
                     <Route path="/profile"
-                           render={()=><Profile postsData={props.postsData}  />}
+                           render={()=><Profile state={props.appState.profilePage}  />}
                     />
                     <Route path="/music" component={Music}/>
                     <Route path="/news" component={News}/>
