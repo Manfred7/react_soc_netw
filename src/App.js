@@ -9,7 +9,8 @@ import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 
 
-function App() {
+function App(props) {
+    debugger;
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -18,11 +19,15 @@ function App() {
                 {/*<Profile/>*/}
                 <div className="app-wrapper-content">
 
-                    <Route exact path="/dialogs" component={Dialogs}/>
+                    <Route exact
+                           path="/dialogs"
+                           render={() => <Dialogs dialogsData={props.dialogsData}
+                                                  messagesData={props.messagesData}/>
+                           }/>
                     <Route path="/profile" component={Profile}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/news" component={News}/>
-                    <Route path="/settings" component ={Settings}/>
+                    <Route path="/settings" component={Settings}/>
 
 
                     {/* <Profile/>*/}
