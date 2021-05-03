@@ -1,4 +1,7 @@
-import {RerenderEntireTree} from "../render";
+let rerenderEntireTree = () => {
+    console.log('state is changed')
+
+}
 
 let dialogsData = [
     {id: "1", userName: "Dimych"},
@@ -22,21 +25,19 @@ let curMessageId = 5;
 let postsData = [
     {id: 1, text: "post1", LikeCount: 777},
     {id: 2, text: "post2", LikeCount: 5}
-
 ];
 
 let curPostId = 2;
 
-
 let state = {
     messsagesPage: {
         messagesData,
-        newMessageText:"new message",
+        newMessageText: "new message",
         dialogsData
     },
     profilePage: {
         postsData,
-        newPostText:"new post"
+        newPostText: "new post"
     },
     newsPage: {},
     musicPage: {},
@@ -46,12 +47,12 @@ let state = {
 
 export let updateNewPostText = (newValue) => {
     state.profilePage.newPostText = newValue;
-    RerenderEntireTree(state);
-
+    rerenderEntireTree();
 }
+
 export let addPost = () => {
     curPostId = curPostId + 1;
-    const likesCount =curPostId;
+    const likesCount = curPostId;
     const newPost = {
         id: curPostId,
         text: state.profilePage.newPostText,
@@ -59,19 +60,23 @@ export let addPost = () => {
     };
     state.profilePage.postsData.push(newPost);
     state.profilePage.newPostText = "";
-    RerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
 export let updateNewMessageText = (newValue) => {
     state.messsagesPage.newMessageText = newValue;
-    RerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
 export let addMessage = () => {
     curMessageId = curMessageId + 1;
-    const newMessage =  {id: curMessageId, txt:  state.messsagesPage.newMessageText};
+    const newMessage = {id: curMessageId, txt: state.messsagesPage.newMessageText};
     state.messsagesPage.messagesData.push(newMessage);
-    state.messsagesPage.newMessageText="";
-    RerenderEntireTree(state);
+    state.messsagesPage.newMessageText = "";
+    rerenderEntireTree();
+}
+
+export const setRerenderProc = (proc) => {
+    rerenderEntireTree = proc;
 }
 export default state;

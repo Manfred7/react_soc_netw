@@ -1,15 +1,12 @@
 import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from "../Post/Post";
-import {updateNewPostText} from "../../../redux/state";
 
 const MyPosts = (props) => {
-
 
     let preparedPosts = props.postsData.map(postInfo => <Post key={postInfo.id}
                                                               text={postInfo.text}
                                                               LikeCount={postInfo.LikeCount}/>);
-
 
     let newPostElement =  React.createRef();
 

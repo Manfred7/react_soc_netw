@@ -1,11 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import {RerenderEntireTree} from "./render";
-import state from "./redux/state";
+import state, {addMessage, addPost, setRerenderProc, updateNewMessageText, updateNewPostText} from "./redux/state";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-//addPost('test test test');
-
-
-RerenderEntireTree(state);
+export let rerenderEntireTree = () => {
+    ReactDOM.render(<App appState={state}
+                         addPost={addPost}
+                         updateNewPostText={updateNewPostText}
+                         addMessage={addMessage}
+                         updateNewMessageText={updateNewMessageText}
+        />,
+        document.getElementById('root'));
+}
+setRerenderProc(rerenderEntireTree);
+rerenderEntireTree();
 
