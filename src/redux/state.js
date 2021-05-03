@@ -1,3 +1,5 @@
+import {RerenderEntireTree} from "../render";
+
 let dialogsData = [
     {id: "1", userName: "Dimych"},
     {id: "2", userName: "Andrey"},
@@ -16,13 +18,12 @@ let messagesData = [
 ];
 
 let postsData = [
-    {id: "1", text: "post1!", LikeCount: "777"},
-    {id: "2", text: "post2", LikeCount: "5"},
-    {id: "3", text: "post3", LikeCount: "53"},
-    {id: "4", text: "post4", LikeCount: "17"},
-    {id: "5", text: "post5", LikeCount: "888"},
-    {id: "6", text: "новый интересный пост", LikeCount: "900"}
+    {id: 1, text: "post1", LikeCount: 777},
+    {id: 2, text: "post2", LikeCount: 5}
+
 ];
+
+let curPostId = 2;
 
 
 let state = {
@@ -33,10 +34,22 @@ let state = {
     profilePage: {
         postsData
     },
-    newsPage:{},
-    musicPage:{},
-    settingsPage:{},
-    sidebar:{}
+    newsPage: {},
+    musicPage: {},
+    settingsPage: {},
+    sidebar: {}
+}
+
+export let addPost = (postText) => {
+    curPostId = curPostId + 1;
+    const likesCount =curPostId;
+    const newPost = {
+        id: curPostId,
+        text: postText,
+        LikeCount: likesCount
+    };
+    state.profilePage.postsData.push(newPost);
+    RerenderEntireTree(state);
 }
 
 export default state;

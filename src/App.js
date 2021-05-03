@@ -25,7 +25,8 @@ function App(props) {
                            }
                     />
                     <Route path="/profile"
-                           render={()=><Profile state={props.appState.profilePage}  />}
+                           render={()=><Profile state={props.appState.profilePage}
+                                                addPost = {props.addPost}/>}
                     />
                     <Route path="/music" component={Music}/>
                     <Route path="/news" component={News}/>
