@@ -1,8 +1,10 @@
 import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from "../Post/Post";
+import {updateNewPostText} from "../../../redux/state";
 
 const MyPosts = (props) => {
+
 
     let preparedPosts = props.postsData.map(postInfo => <Post key={postInfo.id}
                                                               text={postInfo.text}
@@ -12,9 +14,12 @@ const MyPosts = (props) => {
     let newPostElement =  React.createRef();
 
     const addPost=()=> {
+        props.addPost();
+    }
+
+    const onPostChange=()=>{
         let text= newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value ="";
+        props.updateNewPostText(text);
     }
 
     return (
@@ -23,7 +28,10 @@ const MyPosts = (props) => {
 
             <div className={s.newPost}>
                 <div>
-                    <textarea ref={newPostElement}> </textarea>
+                    <textarea ref={newPostElement}
+                              value={props.newPostText}
+                    onChange={onPostChange}/>
+
                 </div>
                 <div>
                     <button onClick={addPost}>

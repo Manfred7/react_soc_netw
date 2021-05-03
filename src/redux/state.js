@@ -17,6 +17,8 @@ let messagesData = [
     {id: "5", txt: "Yeeees!"}
 ];
 
+let curMessageId = 5;
+
 let postsData = [
     {id: 1, text: "post1", LikeCount: 777},
     {id: 2, text: "post2", LikeCount: 5}
@@ -29,10 +31,12 @@ let curPostId = 2;
 let state = {
     messsagesPage: {
         messagesData,
+        newMessageText:"new message",
         dialogsData
     },
     profilePage: {
-        postsData
+        postsData,
+        newPostText:"new post"
     },
     newsPage: {},
     musicPage: {},
@@ -40,16 +44,34 @@ let state = {
     sidebar: {}
 }
 
-export let addPost = (postText) => {
+export let updateNewPostText = (newValue) => {
+    state.profilePage.newPostText = newValue;
+    RerenderEntireTree(state);
+
+}
+export let addPost = () => {
     curPostId = curPostId + 1;
     const likesCount =curPostId;
     const newPost = {
         id: curPostId,
-        text: postText,
+        text: state.profilePage.newPostText,
         LikeCount: likesCount
     };
     state.profilePage.postsData.push(newPost);
+    state.profilePage.newPostText = "";
     RerenderEntireTree(state);
 }
 
+export let updateNewMessageText = (newValue) => {
+    state.messsagesPage.newMessageText = newValue;
+    RerenderEntireTree(state);
+}
+
+export let addMessage = () => {
+    curMessageId = curMessageId + 1;
+    const newMessage =  {id: curMessageId, txt:  state.messsagesPage.newMessageText};
+    state.messsagesPage.messagesData.push(newMessage);
+    state.messsagesPage.newMessageText="";
+    RerenderEntireTree(state);
+}
 export default state;
