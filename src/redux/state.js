@@ -32,8 +32,11 @@ let state = {
     },
     profilePage: {
         postsData
-    }
-
+    },
+    newsPage:{},
+    musicPage:{},
+    settingsPage:{},
+    sidebar:{}
 }
 
 export default state;
