@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let store = {
     _state: {
         messsagesPage: {
@@ -47,7 +52,7 @@ let store = {
 
     dispatch(action) {
 
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             this._state.curPostId = this._state.curPostId + 1;
             const likesCount = this._state.curPostId;
             const newPost = {
@@ -58,22 +63,55 @@ let store = {
             this._state.profilePage.postsData.push(newPost);
             this._state.profilePage.newPostText = "";
             this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newValue;
-            this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.messsagesPage.newMessageText = action.newValue;
-            this._callSubscriber();
-        } else if (action.type === 'ADD-MESSAGE') {
-            this._state.curMessageId = this._state.curMessageId + 1;
-            const newMessage = {id: this._state.curMessageId, txt: this._state.messsagesPage.newMessageText};
-            this._state.messsagesPage.messagesData.push(newMessage);
-            this._state.messsagesPage.newMessageText = "";
-            this._callSubscriber();
+        } else {
+
+            if (action.type === UPDATE_NEW_POST_TEXT) {
+                this._state.profilePage.newPostText = action.newValue;
+                this._callSubscriber();
+            } else if (action.type === UPDATE_NEW_MESAGE_TEXT) {
+                this._state.messsagesPage.newMessageText = action.newValue;
+                this._callSubscriber();
+            } else if (action.type === ADD_MESSAGE) {
+                this._state.curMessageId = this._state.curMessageId + 1;
+                const newMessage = {id: this._state.curMessageId, txt: this._state.messsagesPage.newMessageText};
+                this._state.messsagesPage.messagesData.push(newMessage);
+                this._state.messsagesPage.newMessageText = "";
+                this._callSubscriber();
+            }
         }
     }
 }
 
+
+export const addPostActionCreater = () => {
+    
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updateNewPostTextActionCreater = (value) => {
+
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newValue: value
+    }
+}
+
+export const addMessageActionCreater = () => {
+
+    return {
+        type: ADD_MESSAGE
+    }
+}
+
+export const updateNewMessageTextActionCreater = (value) => {
+
+    return {
+        type: UPDATE_NEW_MESAGE_TEXT,
+        newValue: value
+    }
+}
 
 export default store;
 window.store = store;
