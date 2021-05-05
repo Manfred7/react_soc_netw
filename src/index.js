@@ -6,11 +6,7 @@ import App from "./App";
 
 export let rerenderEntireTree = () => {
 
-    ReactDOM.render(<App appState={store.getState()}
-                         dispatch={store.dispatch.bind(store)
-                         }
-
-        />,
+    ReactDOM.render(<App store={store} />,
         document.getElementById('root'));
 }
 store.subscribe(rerenderEntireTree);

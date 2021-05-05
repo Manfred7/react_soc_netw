@@ -4,7 +4,7 @@ import profileReducer from "./profile_reducer";
 
 let store = {
     _state: {
-        messsagesPage: {
+        messagesPage: {
             dialogsData: [
                 {id: "1", userName: "Dimych"},
                 {id: "2", userName: "Andrey"},

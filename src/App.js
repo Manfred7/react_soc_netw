@@ -7,6 +7,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 function App(props) {
 
@@ -20,15 +21,15 @@ function App(props) {
 
                     <Route exact
                            path="/dialogs"
-                           render={() => <Dialogs state={props.appState.messsagesPage}
-                                                  dispatch ={props.dispatch}
+                           render={() => <DialogsContainer store={props.store}
+
 
                            />
                            }
                     />
                     <Route path="/profile"
-                           render={()=><Profile state={props.appState.profilePage}
-                                                dispatch = {props.dispatch}
+                           render={()=><Profile store={props.store}
+
 
 
                            />}

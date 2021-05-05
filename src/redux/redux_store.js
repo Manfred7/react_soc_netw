@@ -5,7 +5,7 @@ import dialogsReducer from "./dialogs_reducer";
 
 let reducers = combineReducers({
     profilePage :profileReducer,
-    messsagesPage: dialogsReducer
+    messagesPage: dialogsReducer
 });
 
 let store = createStore(reducers);

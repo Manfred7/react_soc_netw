@@ -48,6 +48,7 @@ const dialogsReducer = (state = initialState, action) => {
             state.curMessageId = state.curMessageId + 1;
             const newMessage = {id: state.curMessageId, txt: state.newMessageText};
             state.messagesData.push(newMessage);
+            debugger;
             state.newMessageText = "";
 
             return state;
