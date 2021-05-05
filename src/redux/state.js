@@ -13,7 +13,7 @@ let store = {
                 {id: "4", txt: "Me too!"},
                 {id: "5", txt: "Yeeees!"}
             ],
-            newMessageText: "new message",
+            newMessageText: "",
             dialogsData: [
                 {id: "1", userName: "Dimych"},
                 {id: "2", userName: "Andrey"},
@@ -28,7 +28,7 @@ let store = {
                 {id: 1, text: "post1", LikeCount: 777},
                 {id: 2, text: "post2", LikeCount: 5}
             ],
-            newPostText: "new post"
+            newPostText: ""
         },
         newsPage: {},
         musicPage: {},
@@ -82,9 +82,8 @@ let store = {
     }
 }
 
-
 export const addPostActionCreater = () => {
-    
+
     return {
         type: ADD_POST
     }

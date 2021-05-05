@@ -11,14 +11,13 @@ const Dialogs = (props) => {
 
     let preparedMessages = props.state.messagesData.map(msg => <Message key={msg.id} txt={msg.txt}/>);
 
-    let newMsgElement = React.createRef();
 
     const addMessage = () => {
         const action = addMessageActionCreater();
         props.dispatch(action);
     }
-    const onMessageChange = () => {
-        const action = updateNewMessageTextActionCreater(newMsgElement.current.value)
+    const onMessageChange = (e) => {
+        const action = updateNewMessageTextActionCreater(e.target.value)
         props.dispatch(action);
     }
 
@@ -39,7 +38,7 @@ const Dialogs = (props) => {
 
             <div>
                 <div>
-                    <textarea ref={newMsgElement}
+                    <textarea placeholder={"enter new message text"}
                               value={props.state.newMessageText}
                               onChange={onMessageChange}/>
                 </div>
