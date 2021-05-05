@@ -33,43 +33,44 @@ let store = {
         curMessageId: 5,
         curPostId: 2
     },
-    getState(){
+    getState() {
         return this._state;
     },
     _callSubscriber() {
         console.log('state is changed')
 
     },
-    addPost() {
-        debugger;
-        this._state.curPostId = this._state.curPostId + 1;
-        const likesCount = this._state.curPostId;
-        const newPost = {
-            id: this._state.curPostId,
-            text: this._state.profilePage.newPostText,
-            LikeCount: likesCount
-        };
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._callSubscriber();
-    },
-    updateNewPostText(newValue) {
-        this._state.profilePage.newPostText = newValue;
-        this._callSubscriber();
-    },
-    updateNewMessageText(newValue) {
-        this._state.messsagesPage.newMessageText = newValue;
-        this._callSubscriber();
-    },
-    addMessage() {
-        this._state.curMessageId = this._state.curMessageId + 1;
-        const newMessage = {id: this._state.curMessageId, txt: this._state.messsagesPage.newMessageText};
-        this._state.messsagesPage.messagesData.push(newMessage);
-        this._state.messsagesPage.newMessageText = "";
-        this._callSubscriber();
-    },
+
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+
+        if (action.type === 'ADD-POST') {
+            this._state.curPostId = this._state.curPostId + 1;
+            const likesCount = this._state.curPostId;
+            const newPost = {
+                id: this._state.curPostId,
+                text: this._state.profilePage.newPostText,
+                LikeCount: likesCount
+            };
+            this._state.profilePage.postsData.push(newPost);
+            this._state.profilePage.newPostText = "";
+            this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newValue;
+            this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.messsagesPage.newMessageText = action.newValue;
+            this._callSubscriber();
+        } else if (action.type === 'ADD-MESSAGE') {
+            this._state.curMessageId = this._state.curMessageId + 1;
+            const newMessage = {id: this._state.curMessageId, txt: this._state.messsagesPage.newMessageText};
+            this._state.messsagesPage.messagesData.push(newMessage);
+            this._state.messsagesPage.newMessageText = "";
+            this._callSubscriber();
+        }
     }
 }
 

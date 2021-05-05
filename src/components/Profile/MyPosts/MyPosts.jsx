@@ -8,15 +8,26 @@ const MyPosts = (props) => {
                                                               text={postInfo.text}
                                                               LikeCount={postInfo.LikeCount}/>);
 
-    let newPostElement =  React.createRef();
+    let newPostElement = React.createRef();
 
-    const addPost=()=> {
-        props.addPost();
+    const addPost = () => {
+        const action = {
+            type: 'ADD-POST'
+        }
+
+        props.dispatch(action);
+
     }
 
-    const onPostChange=()=>{
-        let text= newPostElement.current.value;
-        props.updateNewPostText(text);
+    const onPostChange = () => {
+
+        const action = {
+            type: 'UPDATE-NEW-POST-TEXT',
+            newValue: newPostElement.current.value
+        }
+
+        props.dispatch(action);
+        //props.updateNewPostText(text);
     }
 
     return (
@@ -27,7 +38,7 @@ const MyPosts = (props) => {
                 <div>
                     <textarea ref={newPostElement}
                               value={props.newPostText}
-                    onChange={onPostChange}/>
+                              onChange={onPostChange}/>
 
                 </div>
                 <div>
