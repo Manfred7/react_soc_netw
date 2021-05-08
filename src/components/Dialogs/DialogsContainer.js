@@ -1,41 +1,28 @@
-import React from 'react';
 import Dialogs from "./Dialogs";
 import {addMessageActionCreater, updateNewMessageTextActionCreater} from "../../redux/dialogs_reducer";
-import StoreContext from "../../store_context";
+import {connect} from "react-redux";
 
-const DialogsContainer = () => {
-
-
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-
-                    let state = store.getState();
-
-                    const addMessage = () => {
-                        const action = addMessageActionCreater();
-                        store.dispatch(action);
-                    }
-                    const onMessageChange = (text) => {
-                        const action = updateNewMessageTextActionCreater(text)
-                        store.dispatch(action);
-                    }
-
-                    return (
-                        <Dialogs addMessage={addMessage}
-                                 onMessageChange={onMessageChange}
-                                 dialogsData={state.messagesPage.dialogsData}
-                                 messagesData={state.messagesPage.messagesData}
-                                 newMessageText={state.newMessageText}
-                        />
-                    )
-                }
-
-            }
-        </StoreContext.Consumer>
-    )
-
+let mapStateToProps = (state) => {
+    return {
+        dialogsData: state.messagesPage.dialogsData,
+        messagesData: state.messagesPage.messagesData,
+        newMessageText: state.newMessageText
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addMessage: () => {
+            const action = addMessageActionCreater();
+            dispatch(action);
+        },
+        onMessageChange: (text) => {
+            const action = updateNewMessageTextActionCreater(text)
+            dispatch(action);
+        }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
