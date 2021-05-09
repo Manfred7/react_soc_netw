@@ -3,10 +3,11 @@ import {addMessageActionCreater, updateNewMessageTextActionCreater} from "../../
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
+    let messagesPage = state.messagesPage;
     return {
-        dialogsData: state.messagesPage.dialogsData,
-        messagesData: state.messagesPage.messagesData,
-        newMessageText: state.newMessageText
+        dialogsData: messagesPage.dialogsData,
+        messagesData: messagesPage.messagesData,
+        newMessageText: messagesPage.newMessageText
     }
 }
 
