@@ -46,7 +46,6 @@ const dialogsReducer = (state = initialState, action) => {
                 newMessageText: action.newValue
             };
         }
-
         case ADD_MESSAGE: {
 
             let newMessId = state.curMessageId + 1;
