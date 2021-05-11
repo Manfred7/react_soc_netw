@@ -1,34 +1,15 @@
 import React from 'react';
 import s from './Users.module.css'
+import * as axios from "axios";
+import ava from '../../Assets/images/users_default_avatar.png'
 
 const Users = (props) => {
 
-    debugger;
-
     if (props.usersData.length === 0) {
-        props.setUsers([
-            {
-                id: 1,
-                followed: true,
-                fullName: "Ivanov",
-                status: "Gesund",
-                location: {city: "Moscow", country: "Russia"}
-            },
-            {
-                id: 2,
-                followed: false,
-                fullName: "Petrov",
-                status: "Boss",
-                location: {city: "Bryansk", country: "Russia"}
-            },
-            {
-                id: 3,
-                followed: true,
-                fullName: "Sidorov",
-                status: "Boss to",
-                location: {city: "Leningrad", country: "Russia"}
-            }
-        ])
+        const baseUrl ='https://social-network.samuraijs.com/api/1.0';
+        axios.get(baseUrl+'/users').then( response=>{
+            props.setUsers(response.data.items)
+        })
     }
 
     return (
@@ -38,7 +19,15 @@ const Users = (props) => {
                 return (
 
                     <div key={u.id} className={s.users}>
-                        {u.fullName}
+                        {u.name}
+                        <div>
+
+                            <img className={s.ava} src={
+                                u.photos.small!=null? u.photos.small: ava}
+                            />
+
+                        </div>
+                        <div>{u.id}</div>
                         <div>
                             {u.followed ?
                                 <button onClick={() => {
@@ -50,8 +39,7 @@ const Users = (props) => {
 
                         </div>
                         <div>{u.status}</div>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+
                     </div>)
             })}
         </div>
