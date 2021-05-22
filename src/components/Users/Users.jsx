@@ -6,36 +6,31 @@ import ava from '../../Assets/images/users_default_avatar.png'
 
 class Users extends Component {
 
-    getUsers = () => {
-        if (this.props.usersData.length === 0) {
-            const baseUrl = 'https://social-network.samuraijs.com/api/1.0';
-            axios.get(baseUrl + '/users').then(response => {
-                this.props.setUsers(response.data.items)
-            })
-        }
+    constructor(props) {
+        super(props);
+
+        const baseUrl = 'https://social-network.samuraijs.com/api/1.0';
+        axios.get(baseUrl + '/users').then(response => {
+            this.props.setUsers(response.data.items)
+        })
     }
 
     render() {
         return (
+
             <div>
-                <button onClick={this.getUsers}>
-                    get users
-                </button>
                 {this.props.usersData.map((u) => {
-
                     return (
-
-
                         <div key={u.id} className={s.users}>
                             {u.name}
                             <div>
-
-                                <img className={s.ava} src={
-                                    u.photos.small != null ? u.photos.small : ava}
+                                <img className={s.ava}
+                                     src={u.photos.small != null ? u.photos.small : ava}
                                 />
-
                             </div>
-                            <div>{u.id}</div>
+                            <div>
+                                {u.id}
+                            </div>
                             <div>
                                 {u.followed ?
                                     <button onClick={() => {
@@ -44,10 +39,7 @@ class Users extends Component {
                                     : <button onClick={() => {
                                         this.props.follow(u.id)
                                     }}>follow</button>}
-
                             </div>
-                            <div>{u.status}</div>
-
                         </div>
                     )
                 })}
@@ -55,7 +47,6 @@ class Users extends Component {
         );
     }
 }
-
 
 
 export default Users;
