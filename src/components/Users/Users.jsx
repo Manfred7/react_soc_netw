@@ -8,7 +8,9 @@ class Users extends Component {
 
     constructor(props) {
         super(props);
+    }
 
+    componentDidMount() {
         const baseUrl = 'https://social-network.samuraijs.com/api/1.0';
         axios.get(baseUrl + '/users').then(response => {
             this.props.setUsers(response.data.items)
