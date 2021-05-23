@@ -6,3 +6,9 @@
     width: 80px;
     height: 80px;
 }
+
+.SelectedPage{
+    background: gold;
+    font-weight: bold;
+
+}
