@@ -13,15 +13,14 @@ let initialState = {
     isFetching: false
 };
 
-
-export const togleIsFetchingAc = (isInProgress) => {
+export const togleIsFetching = (isInProgress) => {
 
     return {
         type: TOGGLE_IS_FETCHING,
         inProgress:isInProgress
     }
 }
-export const followAc = (userId) => {
+export const follow = (userId) => {
 
     return {
         type: FOLLOW,
@@ -29,7 +28,7 @@ export const followAc = (userId) => {
     }
 }
 
-export const UnFollowAc = (userId) => {
+export const unfollow = (userId) => {
 
     return {
         type: UN_FOLLOW,
@@ -45,14 +44,14 @@ export const setUsers = (users) => {
     }
 }
 
-export const setTotalUsersCountAC = (usersCount) => {
+export const setTotalUsersCount = (usersCount) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalUsersCount: usersCount
 
     }
 }
-export const setCurrentPageAC = (pageNumber) => {
+export const setCurrentPage = (pageNumber) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage: pageNumber
@@ -62,7 +61,6 @@ export const setCurrentPageAC = (pageNumber) => {
 const usersReducer = (state = initialState, action) => {
     console.log(action);
     switch (action.type) {
-
         case  FOLLOW: {
             let stateCopy = {
                 ...state,
@@ -75,12 +73,9 @@ const usersReducer = (state = initialState, action) => {
                         return u;
                     }
                 )
-
             }
             return stateCopy;
-
         }
-
         case  UN_FOLLOW: {
             let stateCopy = {
                 ...state,
@@ -96,12 +91,10 @@ const usersReducer = (state = initialState, action) => {
 
             }
             return stateCopy;
-
         }
         case SET_USERS: {
             return {...state, usersData: [...action.users]}
         }
-
         case SET_CURRENT_PAGE:{
             return {...state, currentPage: action.currentPage}
         }
@@ -114,7 +107,6 @@ const usersReducer = (state = initialState, action) => {
 
         default:
             return state;
-
     }
 }
 

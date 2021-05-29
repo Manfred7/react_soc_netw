@@ -4,9 +4,6 @@ import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 
 class UsersAPIComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         this.props.togleIsFetching(true);

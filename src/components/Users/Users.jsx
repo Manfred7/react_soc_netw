@@ -36,7 +36,7 @@ const Users = (props) => {
                         <div key={u.id} className={s.users}>
                             {u.name}
                             <div>
-                                <img className={s.ava}
+                                <img className={s.ava} alt=""
                                      src={u.photos.small != null ? u.photos.small : ava}
                                 />
                             </div>
