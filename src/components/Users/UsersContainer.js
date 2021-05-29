@@ -2,9 +2,9 @@ import UsersAPIComponent from "./UsersAPIComponent";
 import {connect} from "react-redux";
 import {
     followAc,
-    setCurrentPageAC,
+    setCurrentPageAC, setIsFetchingAc,
     setTotalUsersCountAC,
-    setUsers,
+    setUsers, togleIsFetchingAc,
     UnFollowAc
 } from "../../redux/users_reducer";
 
@@ -14,7 +14,8 @@ let mapStateToProps = (state) => {
         usersData: usersPage.usersData,
         pageSize: usersPage.pageSize,
         totalUsersCount: usersPage.totalUsersCount,
-        currentPage: usersPage.currentPage
+        currentPage: usersPage.currentPage,
+        isFetching: usersPage.isFetching
     }
 }
 
@@ -41,6 +42,10 @@ let mapDispatchToProps = (dispatch) => {
             const action = setTotalUsersCountAC(usersCount)
             dispatch(action);
 
+        },
+        togleIsFetching: (enabled) => {
+            const action = togleIsFetchingAc(enabled);
+            dispatch(action);
         }
     }
 }
