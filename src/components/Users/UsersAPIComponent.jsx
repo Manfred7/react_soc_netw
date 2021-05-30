@@ -2,13 +2,20 @@ import React, {Component} from 'react';
 import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
+import {SAMURAIJS_API_KEY} from "../../Utils/API_keys";
+
 
 class UsersAPIComponent extends Component {
 
     componentDidMount() {
         this.props.togleIsFetching(true);
         const baseUrl = 'https://social-network.samuraijs.com/api/1.0';
-        axios.get(baseUrl + `/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(baseUrl + `/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+            headers: {
+                "API-KEY": SAMURAIJS_API_KEY
+            }
+        })
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
@@ -20,7 +27,12 @@ class UsersAPIComponent extends Component {
         this.props.togleIsFetching(true);
 
         const baseUrl = 'https://social-network.samuraijs.com/api/1.0';
-        axios.get(baseUrl + `/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(baseUrl + `/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+            headers: {
+                "API-KEY": SAMURAIJS_API_KEY
+            }
+        })
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.togleIsFetching(false);
@@ -41,7 +53,7 @@ class UsersAPIComponent extends Component {
                        follow={this.props.follow}
                        unfollow={this.props.unfollow}
                 />
-           </div>
+            </div>
 
         );
     }
