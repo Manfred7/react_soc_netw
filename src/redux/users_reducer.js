@@ -59,7 +59,7 @@ export const setCurrentPage = (pageNumber) => {
 }
 
 const usersReducer = (state = initialState, action) => {
-    console.log(action);
+
     switch (action.type) {
         case  FOLLOW: {
             let stateCopy = {

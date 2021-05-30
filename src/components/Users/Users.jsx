@@ -2,8 +2,7 @@ import React from 'react';
 import s from "./Users.module.css";
 import ava from "../../Assets/images/users_default_avatar.png";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {SAMURAIJS_API_KEY} from "../../Utils/API_keys";
+import {DoFollowUser, DoUnfollowUser} from "../../API/API";
 
 const Users = (props) => {
 
@@ -51,39 +50,23 @@ const Users = (props) => {
                             <div>
                                 {u.followed ?
                                     <button onClick={() => {
-                                        const baseUrl = 'https://social-network.samuraijs.com/api/1.0';
 
-                                        axios.delete(baseUrl + `/follow/${u.id}`,
-                                            {
-                                                withCredentials: true,
-                                                headers: {
-                                                    "API-KEY": SAMURAIJS_API_KEY
-                                                }
-                                            })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
-                                                    props.unfollow(u.id)
-                                                }
+                                        DoUnfollowUser(u.id).then(data => {
+                                            if (data.resultCode === 0) {
+                                                props.unfollow(u.id)
+                                            }
 
-                                            })
+                                        })
 
                                     }}>Unfollow</button>
                                     : <button onClick={() => {
 
-                                        const baseUrl = 'https://social-network.samuraijs.com/api/1.0';
-                                        axios.post(baseUrl + `/follow/${u.id}`, {},
-                                            {
-                                                withCredentials: true,
-                                                headers: {
-                                                    "API-KEY": SAMURAIJS_API_KEY
-                                                }
-                                            })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
-                                                    props.follow(u.id)
-                                                }
+                                        DoFollowUser(u.id).then(data => {
+                                            if (data.resultCode === 0) {
+                                                props.follow(u.id)
+                                            }
 
-                                            })
+                                        })
 
 
                                     }}>follow</button>}
