@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
-import {getUsers} from "../../API/API";
+import {UsersAPI} from "../../API/API";
 
 
 class UsersAPIComponent extends Component {
@@ -9,7 +9,7 @@ class UsersAPIComponent extends Component {
     componentDidMount() {
         this.props.togleIsFetching(true);
 
-        getUsers(this.props.currentPage,this.props.pageSize)
+        UsersAPI.getUsers(this.props.currentPage,this.props.pageSize)
             .then(data => {
                 this.props.setUsers(data.items);
                 this.props.setTotalUsersCount(data.totalCount);
@@ -20,7 +20,7 @@ class UsersAPIComponent extends Component {
     onPageChanged = (pageNumber) => {
         this.props.togleIsFetching(true);
 
-        getUsers(pageNumber,this.props.pageSize)
+        UsersAPI.getUsers(pageNumber,this.props.pageSize)
             .then(data => {
                 this.props.setUsers(data.items);
                 this.props.togleIsFetching(false);
