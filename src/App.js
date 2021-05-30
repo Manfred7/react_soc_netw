@@ -23,7 +23,7 @@ function App(props) {
                            render={() => <DialogsContainer  />
                            }
                     />
-                    <Route path="/profile/:userId" render={()=><ProfileContainer  />} />
+                    <Route path="/profile/:userId?" render={()=><ProfileContainer  />} />
                     <Route path="/music" component={Music}/>
                     <Route path="/news" component={News}/>
                     <Route path="/settings" component={Settings}/>
