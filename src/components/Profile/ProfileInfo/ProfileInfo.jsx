@@ -12,7 +12,8 @@ const ProfileInfo = (props) => {
         )
     }
 
-     let avaImg = props.currentProfile.photos? props.currentProfile.photos.large:defaultAva;
+     let avaImg = props.currentProfile.photos.large? props.currentProfile.photos.large:defaultAva;
+
     return (
         <div>
             <div>
@@ -24,10 +25,12 @@ const ProfileInfo = (props) => {
             <div>
                 <div className={s.ava}>
                     <img src={avaImg} width="80px" alt=""/>
-                    ava
+
                 </div>
                 <div className={s.description}>
-                    +description :)
+                    <div>userId: {props.currentProfile.userId}</div>
+                    <div>fullName:{props.currentProfile.fullName}</div>
+                    <div>lookingForAJobDescription:{props.currentProfile.lookingForAJobDescription}</div>
                 </div>
             </div>
         </div>
