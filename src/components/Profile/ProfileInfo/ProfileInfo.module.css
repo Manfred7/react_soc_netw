@@ -3,6 +3,10 @@
     padding: 10px;
 }
 
+.ava.img{
+    width :70px;
+    height: 100px;
+}
 .description{
     background: blueviolet;
     padding: 10px;
