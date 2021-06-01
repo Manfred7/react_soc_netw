@@ -1,3 +1,5 @@
+import {UsersAPI} from "../API/API";
+
 const FOLLOW = 'FOLLOW';
 const UN_FOLLOW = 'UN_FOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -123,7 +125,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.inProgress ?
                     [...state.followingInProgress, action.idUserInProgress]
-                    : state.followingInProgress.filter(id => id != action.idUserInProgress)
+                    : state.followingInProgress.filter(id => id !== action.idUserInProgress)
             }
         }
 
@@ -131,5 +133,58 @@ const usersReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export const getUsersThunkCreater = (currentPage, pageSize) => {
+    return (dispatch) => {
+
+        dispatch(togleIsFetching(true));
+
+        UsersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+                dispatch(togleIsFetching(false));
+            })
+    }
+}
+
+export const getNextPageUsersThunkCreater = (pageNumber, pageSize) => {
+    return (dispatch) => {
+        dispatch(togleIsFetching(true));
+
+        UsersAPI.getUsers(pageNumber, pageSize)
+            .then(data => {
+                dispatch(setUsers(data.items));
+                dispatch(togleIsFetching(false));
+            })
+        dispatch(setCurrentPage(pageNumber));
+    }
+}
+
+export const DoUnfollowUserThunkCreater = (id) => {
+    return (dispatch) => {
+        dispatch(togleIsFollowing(id, true));
+        UsersAPI.DoUnfollowUser(id).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unfollow(id))
+            }
+            dispatch(togleIsFollowing(id, false));
+        });
+    }
+}
+
+export const DoFollowUserThunkCreater = (id) => {
+    return (dispatch) => {
+        dispatch(togleIsFollowing(id, true));
+
+        UsersAPI.DoFollowUser(id).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(follow(id))
+            }
+            dispatch(togleIsFollowing(id, false));
+        });
+    }
+}
+
 
 export default usersReducer;

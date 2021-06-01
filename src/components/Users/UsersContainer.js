@@ -1,7 +1,9 @@
 import UsersAPIComponent from "./UsersAPIComponent";
 import {connect} from "react-redux";
 import {
-    follow,
+    DoFollowUserThunkCreater,
+    DoUnfollowUserThunkCreater,
+    follow, getNextPageUsersThunkCreater, getUsersThunkCreater,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
@@ -29,7 +31,11 @@ let  diaspatchToPropsObj ={
     setCurrentPage,
     setTotalUsersCount,
     togleIsFetching,
-    togleIsFollowing
+    togleIsFollowing,
+    getUsers: getUsersThunkCreater,
+    getNextPageUsers:getNextPageUsersThunkCreater,
+    DoUnfollowUser:DoUnfollowUserThunkCreater,
+    DoFollowUser:DoFollowUserThunkCreater
 }
 
 const UsersContainer = connect(mapStateToProps, diaspatchToPropsObj)(UsersAPIComponent);
