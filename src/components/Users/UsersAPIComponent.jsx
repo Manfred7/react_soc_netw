@@ -3,13 +3,12 @@ import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 import {UsersAPI} from "../../API/API";
 
-
 class UsersAPIComponent extends Component {
 
     componentDidMount() {
         this.props.togleIsFetching(true);
 
-        UsersAPI.getUsers(this.props.currentPage,this.props.pageSize)
+        UsersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.setUsers(data.items);
                 this.props.setTotalUsersCount(data.totalCount);
@@ -20,7 +19,7 @@ class UsersAPIComponent extends Component {
     onPageChanged = (pageNumber) => {
         this.props.togleIsFetching(true);
 
-        UsersAPI.getUsers(pageNumber,this.props.pageSize)
+        UsersAPI.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
                 this.props.setUsers(data.items);
                 this.props.togleIsFetching(false);
@@ -29,7 +28,7 @@ class UsersAPIComponent extends Component {
     }
 
     render() {
-
+        console.log('isFollowingInProgress',this.props.isFollowingInProgress)
         return (
             <div>
                 {this.props.isFetching ? <Preloader/> : null}
@@ -40,6 +39,8 @@ class UsersAPIComponent extends Component {
                        onPageChanged={this.onPageChanged}
                        follow={this.props.follow}
                        unfollow={this.props.unfollow}
+                       followingInProgress ={this.props.followingInProgress}
+                       togleIsFollowing={this.props.togleIsFollowing}
                 />
             </div>
 

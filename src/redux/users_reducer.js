@@ -3,21 +3,33 @@ const UN_FOLLOW = 'UN_FOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'SET_IS_FETCHING';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING = 'TOGGLE_IS_FOLLOWING';
+
 
 let initialState = {
     usersData: [],
-    pageSize:100,
-    totalUsersCount:0,
-    currentPage:1,
-    isFetching: false
+    pageSize: 100,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: false,
+    followingInProgress: []
 };
+
+export const togleIsFollowing = (idUserInProgress, isInProgress) => {
+
+    return {
+        type: TOGGLE_IS_FOLLOWING,
+        idUserInProgress: idUserInProgress,
+        inProgress: isInProgress
+    }
+}
 
 export const togleIsFetching = (isInProgress) => {
 
     return {
         type: TOGGLE_IS_FETCHING,
-        inProgress:isInProgress
+        inProgress: isInProgress
     }
 }
 export const follow = (userId) => {
@@ -95,14 +107,24 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS: {
             return {...state, usersData: [...action.users]}
         }
-        case SET_CURRENT_PAGE:{
+        case SET_CURRENT_PAGE: {
             return {...state, currentPage: action.currentPage}
         }
-        case SET_TOTAL_USERS_COUNT:{
+        case SET_TOTAL_USERS_COUNT: {
             return {...state, totalUsersCount: action.totalUsersCount}
         }
-        case TOGGLE_IS_FETCHING:{
+        case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.inProgress}
+        }
+
+        case TOGGLE_IS_FOLLOWING: {
+            console.log('action.inProgress', action.idUserInProgress);
+            return {
+                ...state,
+                followingInProgress: action.inProgress ?
+                    [...state.followingInProgress, action.idUserInProgress]
+                    : state.followingInProgress.filter(id => id != action.idUserInProgress)
+            }
         }
 
         default:

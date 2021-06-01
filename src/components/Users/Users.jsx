@@ -4,6 +4,7 @@ import ava from "../../Assets/images/users_default_avatar.png";
 import {NavLink} from "react-router-dom";
 import {UsersAPI} from "../../API/API";
 
+
 const Users = (props) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -49,24 +50,29 @@ const Users = (props) => {
                             </div>
                             <div>
                                 {u.followed ?
-                                    <button onClick={() => {
+                                    <button disabled={props.followingInProgress.some(id=> id===u.id)} onClick={() => {
 
+                                        props.togleIsFollowing(u.id,true);
                                         UsersAPI.DoUnfollowUser(u.id).then(data => {
                                             if (data.resultCode === 0) {
                                                 props.unfollow(u.id)
                                             }
-
-                                        })
+                                            props.togleIsFollowing(u.id,false);
+                                        });
 
                                     }}>Unfollow</button>
-                                    : <button onClick={() => {
+                                    : <button disabled={props.followingInProgress.some(id=> id===u.id)} onClick={() => {
+
+                                        props.togleIsFollowing(u.id,true);
 
                                         UsersAPI.DoFollowUser(u.id).then(data => {
                                             if (data.resultCode === 0) {
                                                 props.follow(u.id)
                                             }
+                                            props.togleIsFollowing(u.id,false);
+                                        });
 
-                                        })
+
 
 
                                     }}>follow</button>}

@@ -1,6 +1,14 @@
 import UsersAPIComponent from "./UsersAPIComponent";
 import {connect} from "react-redux";
-import { follow,  setCurrentPage, setTotalUsersCount, setUsers, togleIsFetching, unfollow} from "../../redux/users_reducer";
+import {
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    togleIsFetching,
+    togleIsFollowing,
+    unfollow
+} from "../../redux/users_reducer";
 
 let mapStateToProps = (state) => {
     let usersPage = state.usersPage;
@@ -9,7 +17,8 @@ let mapStateToProps = (state) => {
         pageSize: usersPage.pageSize,
         totalUsersCount: usersPage.totalUsersCount,
         currentPage: usersPage.currentPage,
-        isFetching: usersPage.isFetching
+        isFetching: usersPage.isFetching,
+        followingInProgress:usersPage.followingInProgress
     }
 }
 
@@ -19,7 +28,8 @@ let  diaspatchToPropsObj ={
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    togleIsFetching
+    togleIsFetching,
+    togleIsFollowing
 }
 
 const UsersContainer = connect(mapStateToProps, diaspatchToPropsObj)(UsersAPIComponent);
