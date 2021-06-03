@@ -22,10 +22,7 @@ class UsersAPIComponent extends Component {
                        currentPage={this.props.currentPage}
                        usersData={this.props.usersData}
                        onPageChanged={this.onPageChanged}
-                       follow={this.props.follow}
-                       unfollow={this.props.unfollow}
                        followingInProgress ={this.props.followingInProgress}
-                       togleIsFollowing={this.props.togleIsFollowing}
                        DoFollowUser={this.props.DoFollowUser}
                        DoUnfollowUser={ this.props.DoUnfollowUser}
                 />

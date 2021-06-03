@@ -1,3 +1,5 @@
+import {AuthAPI} from "../API/API";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'SET_IS_FETCHING';
 
@@ -37,6 +39,16 @@ const authReducer = (state = initialState, action) => {
 
         default:
             return state;
+    }
+}
+
+export const getAuthorUserThunkCreater = (id) => {
+    return (dispatch) => {
+
+        AuthAPI.getAuthorUserData()
+            .then(data => {
+                dispatch(setAuthUserData(data.data));
+            })
     }
 }
 export default authReducer;

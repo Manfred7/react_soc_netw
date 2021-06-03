@@ -9,6 +9,30 @@ const axiosInstance = axios.create({
     }
 })
 
+export const ProfileAPI ={
+
+    getProfileInfo(profileId){
+        console.log('getProfileInfo.profileId ', profileId)
+        return axiosInstance.get(`/profile/${profileId}`)
+            .then(response => {
+                console.log('getProfileInfo',response.data)
+                return response.data
+            })
+    }
+}
+
+
+export const AuthAPI ={
+    getAuthorUserData (){
+
+        return axiosInstance.get(`/auth/me`)
+            .then(response => {
+                return response.data;
+            })
+
+    }
+}
+
 export const UsersAPI = {
     getUsers(pageNumber, pageSize) {
         return axiosInstance.get(`/users?page=${pageNumber}&count=${pageSize}`)
