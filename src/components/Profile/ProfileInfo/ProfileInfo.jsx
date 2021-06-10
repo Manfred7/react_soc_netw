@@ -1,7 +1,9 @@
 import React from 'react';
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../Common/Preloader/Preloader";
-import  defaultAva from "../../../Assets/images/users_default_avatar.png"
+import defaultAva from "../../../Assets/images/users_default_avatar.png"
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
+
 const ProfileInfo = (props) => {
 
     if (!props.currentProfile) {
@@ -12,7 +14,7 @@ const ProfileInfo = (props) => {
         )
     }
 
-     let avaImg = props.currentProfile.photos.large? props.currentProfile.photos.large:defaultAva;
+    let avaImg = props.currentProfile.photos.large ? props.currentProfile.photos.large : defaultAva;
 
     return (
         <div>
@@ -29,6 +31,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={s.description}>
                     <div>userId: {props.currentProfile.userId}</div>
+                    <ProfileStatus status={"тестовый статус"}/>
                     <div>fullName:{props.currentProfile.fullName}</div>
                     <div>lookingForAJobDescription:{props.currentProfile.lookingForAJobDescription}</div>
                 </div>
