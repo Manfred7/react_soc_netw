@@ -12,6 +12,7 @@ import {
     unfollow
 } from "../../redux/users_reducer";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     let usersPage = state.usersPage;
@@ -21,23 +22,27 @@ let mapStateToProps = (state) => {
         totalUsersCount: usersPage.totalUsersCount,
         currentPage: usersPage.currentPage,
         isFetching: usersPage.isFetching,
-        followingInProgress:usersPage.followingInProgress
+        followingInProgress: usersPage.followingInProgress
     }
 }
 
-let  diaspatchToPropsObj ={
+let diaspatchToPropsObj = {
     follow,
-    unfollow ,
+    unfollow,
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
     togleIsFetching,
     togleIsFollowing,
     getUsers: getUsersThunkCreater,
-    getNextPageUsers:getNextPageUsersThunkCreater,
-    DoUnfollowUser:DoUnfollowUserThunkCreater,
-    DoFollowUser:DoFollowUserThunkCreater
+    getNextPageUsers: getNextPageUsersThunkCreater,
+    DoUnfollowUser: DoUnfollowUserThunkCreater,
+    DoFollowUser: DoFollowUserThunkCreater
 }
-let UsersContainerWithRedirect = WithAuthRedirect(UsersAPIComponent);
-const UsersContainer = connect(mapStateToProps, diaspatchToPropsObj)(UsersContainerWithRedirect);
-export default UsersContainer;
+
+export default compose(
+    connect(mapStateToProps, diaspatchToPropsObj),
+    WithAuthRedirect
+)
+(UsersAPIComponent)
+
