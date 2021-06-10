@@ -27,7 +27,10 @@ export const AuthAPI ={
 
         return axiosInstance.get(`/auth/me`)
             .then(response => {
-                return response.data;
+             //   if (response.data.resultCode===0) {
+             //       return response.data;
+               // }
+                return response.data
             })
 
     }

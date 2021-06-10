@@ -11,6 +11,7 @@ import {
     togleIsFollowing,
     unfollow
 } from "../../redux/users_reducer";
+import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 
 let mapStateToProps = (state) => {
     let usersPage = state.usersPage;
@@ -37,6 +38,6 @@ let  diaspatchToPropsObj ={
     DoUnfollowUser:DoUnfollowUserThunkCreater,
     DoFollowUser:DoFollowUserThunkCreater
 }
-
-const UsersContainer = connect(mapStateToProps, diaspatchToPropsObj)(UsersAPIComponent);
+let UsersContainerWithRedirect = WithAuthRedirect(UsersAPIComponent);
+const UsersContainer = connect(mapStateToProps, diaspatchToPropsObj)(UsersContainerWithRedirect);
 export default UsersContainer;

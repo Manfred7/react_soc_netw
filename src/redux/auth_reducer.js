@@ -7,7 +7,7 @@ let initialState = {
     id: null,
     login: null,
     email: null,
-    isFetching :false,
+    isFetching: false,
     isAuth: false
 };
 
@@ -22,7 +22,7 @@ export const togleIsFetching = (isInProgress) => {
 
     return {
         type: TOGGLE_IS_FETCHING,
-        inProgress:isInProgress
+        inProgress: isInProgress
     }
 }
 
@@ -31,9 +31,13 @@ const authReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SET_USER_DATA: {
-            return {...state,...action.userData, isAuth : true}
+            if (action.userData.resultCode === 0) {
+                return {...state, ...action.userData.data, isAuth: true}
+            } else
+                return {...state, ...action.userData.data, isAuth: false}
         }
-        case TOGGLE_IS_FETCHING:{
+
+        case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.inProgress}
         }
 
@@ -47,7 +51,7 @@ export const getAuthorUserThunkCreater = (id) => {
 
         AuthAPI.getAuthorUserData()
             .then(data => {
-                dispatch(setAuthUserData(data.data));
+                dispatch(setAuthUserData(data));
             })
     }
 }
