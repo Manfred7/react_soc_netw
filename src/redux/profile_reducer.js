@@ -3,6 +3,7 @@ import {ProfileAPI} from "../API/API";
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE ='SET_USER_PROFILE';
+const SET_USER_STATUS ='SET_USER_STATUS';
 
 let initialState = {
     curPostId: 2,
@@ -11,7 +12,8 @@ let initialState = {
         {id: 1, text: "post1", LikeCount: 777},
         {id: 2, text: "post2", LikeCount: 5}
     ],
-    currentProfile:null
+    currentProfile:null,
+    status:"status"
 };
 
 export const addPostActionCreater = () => {
@@ -21,7 +23,13 @@ export const addPostActionCreater = () => {
     }
 }
 
-
+export const setUserStatus = (newValue) => {
+    debugger;
+    return {
+        type: SET_USER_STATUS,
+        newValue: newValue
+    }
+}
 export const setUserProfile = (newProfileValue) => {
 
     return {
@@ -75,6 +83,13 @@ const profileReducer = (state = initialState, action) => {
             };
 
         }
+        case SET_USER_STATUS:{
+
+            return {
+                ...state,
+                status: action.newValue
+            };
+        }
 
         default:
             return state;
@@ -89,9 +104,31 @@ export const getProfileInfoThunkCreater = (profileId) => {
             .then(data => {
                 dispatch(setUserProfile(data));
             })
-
     }
 }
 
+export const getProfileStatusThunkCreater = (profileId) => {
+    return (dispatch) => {
+
+        ProfileAPI.getProfileStatus(profileId)
+            .then(data => {
+                debugger;
+
+                dispatch(setUserStatus(data));
+            })
+    }
+}
+
+export const updateProfileStatusThunkCreater = (status) => {
+    return (dispatch) => {
+
+        ProfileAPI.updateProfileStatus(status)
+            .then(data => {
+                if (data.resultCode===0) {
+                    dispatch(setUserStatus(status));
+                }
+            })
+    }
+}
 
 export default profileReducer;

@@ -18,6 +18,23 @@ export const ProfileAPI ={
                 console.log('getProfileInfo',response.data)
                 return response.data
             })
+    },
+
+    getProfileStatus(profileId){
+        console.log('getProfileStatus.profileId ', profileId)
+        return axiosInstance.get(`/profile/status/${profileId}`)
+            .then(response => {
+                console.log('getProfileStatus',response.data)
+                return response.data
+            })
+    },
+    updateProfileStatus(status){
+
+        return axiosInstance.put(`/profile/status`,{status:status})
+            .then(response => {
+                console.log('updateProfileStatus',response.data)
+                return response.data
+            })
     }
 }
 
@@ -30,6 +47,7 @@ export const AuthAPI ={
              //   if (response.data.resultCode===0) {
              //       return response.data;
                // }
+                debugger;
                 return response.data
             })
 
