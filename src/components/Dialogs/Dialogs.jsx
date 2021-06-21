@@ -3,14 +3,21 @@ import s from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
-import {Field, reset, reduxForm} from 'redux-form'
+import {Field,  reduxForm} from 'redux-form'
+import {MyTextarea} from "../Common/FormControls/FormsControls";
+import {maxLength30, requiredField} from "../../Utils/Validators/validators";
 
 let NewDialogForm = (props) => {
     const {handleSubmit} = props
+
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <Field name="newMessageText" component="textarea" type="text" placeholder={"enter new message text"}/>
+                <Field name="newMessageText"
+                       component={MyTextarea}
+                       type="text"
+                       placeholder={"enter new message text"}
+                       validate={[requiredField,maxLength30]}/>
             </div>
             <div>
                 <button type="submit">Add new Message</button>
